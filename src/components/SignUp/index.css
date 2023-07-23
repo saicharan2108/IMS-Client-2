@@ -1,0 +1,57 @@
+.login-header-2 h1 {
+  margin-top: 10px;
+}
+
+.login-header-2 {
+  margin-bottom: 10px;
+}
+
+.header-gradient-container-2 {
+  top: -5px;
+  background-image: linear-gradient(135deg, #d6fc6c, #66f3e7, #d55ef0);
+}
+
+.login-image-container-2 {
+  background-image: src("https://res.cloudinary.com/dlovqnrza/image/upload/v1689935450/best-project-management-platforms-featured-image-scaled-1_qd5slm.jpg");
+  
+
+}
+
+.sigin-btn:hover {
+  background-color: #5e80f0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 8px;
+  position: absolute;
+}
+
+.input-container:nth-child(4) {
+  margin-bottom: 40px;
+}
+
+.input-container:nth-child(5) {
+  margin-bottom: 35px;
+}
+
+.select-container {
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+.select-container:hover {
+  border-color: #999;
+}
+
+.select-container:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
