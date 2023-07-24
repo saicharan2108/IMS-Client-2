@@ -81,10 +81,36 @@ const TaskForm = (props) => {
               placeholder="Description"
               {...register("description", { required: true })}
               className="task-input-field"
-              style={{ resize: "none", minHeight: "150px" }}
+              style={{ resize: "none", minHeight: "80px" }}
             />
             {errors.description && (
               <span className="task-error-msg">*Description is required</span>
+            )}
+          </div>
+          <div className="create-task-form-input">
+            <label htmlFor="dueDate">Start Date</label>
+            <input
+              type="date"
+              id="startDate"
+              name="startDate"
+              // min={new Date().toISOString().split("T")[0]}
+              defaultValue={
+                (() => {
+                  const dateObject = new Date(task?.startDate)
+                  const year = dateObject.getFullYear()
+                  const month = String(dateObject.getMonth() + 1).padStart(
+                    2,
+                    "0"
+                  )
+                  const day = String(dateObject.getDate()).padStart(2, "0")
+                  return `${year}-${month}-${day}`
+                })() || ""
+              }
+              {...register("startDate", { required: true })}
+              className="task-input-field"
+            />
+            {errors.startDate && (
+              <span className="task-error-msg">*Start Date is required</span>
             )}
           </div>
           <div className="create-task-form-input">
@@ -158,10 +184,21 @@ const TaskForm = (props) => {
                 Completed
               </option>
             </select>
+            <input
+              type="text"
+              id="latestUpdate"
+              name="latestUpdate"
+              defaultValue={task?.latestUpdate || ""}
+              placeholder="Latest Update"
+              {...register("latestUpdate", { required: false })}
+              className="task-input-field"
+            />
+
             {/* {errors.assignedTo && (
               <span className="task-error-msg">*This field is required</span>
             )} */}
           </div>
+
           <button type="submit" className="create-btn">
             {loading ? (
               <Oval

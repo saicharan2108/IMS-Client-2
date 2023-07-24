@@ -14,3 +14,14 @@
     align-items: center;
   }
 }
+
+.start-end{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  align-items: start;
+}
+
+.start-icon{
+  list-style-type: disc;
+}

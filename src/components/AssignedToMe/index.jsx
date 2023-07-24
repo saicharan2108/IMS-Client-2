@@ -312,17 +312,28 @@ const AssignedToMe = () => {
                   </div>
 
                   <p>{task.description}</p>
-
+                  
                   <div className="task-card-footer">
-                    <p>
-                      Due:{" "}
-                      {new Date(task.dueDate).toLocaleString("en-us", {
-                        day: "numeric",
-                        month: "short",
-                        year: "2-digit",
-                      })}
-                    </p>
-
+                  
+                  <div className="start-end">
+                       
+                       <p className="start-icon">
+                            Start:{" "}
+                            {new Date(task.startDate).toLocaleString("en-us", {
+                              day: "numeric",
+                              month: "short",
+                              year: "2-digit",
+                            })}
+                          </p>
+                          <p className="due-icon">
+                            Due   :{" "}
+                            {new Date(task.dueDate).toLocaleString("en-us", {
+                              day: "numeric",
+                              month: "short",
+                              year: "2-digit",
+                            })}
+                          </p>
+                          </div>
                     <div>
                       {task.assignedUser !== task.createdBy && (
                         <Tippy content={task.assignedUser}>
