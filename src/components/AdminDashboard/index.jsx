@@ -401,7 +401,7 @@ const AdminDashboard = () => {
                                   {task.assignedUser
                                     .split(" ")
                                     .slice(0, 2)
-                                    .map((item) => item[0].toUpperCase())}
+                                    .map((item) => item[0])}
                                 </div>
                               </Tippy>
                             )}
@@ -410,7 +410,7 @@ const AdminDashboard = () => {
                                 {task.createdBy
                                   .split(" ")
                                   .slice(0, 2)
-                                  .map((item) => item[0].toUpperCase())}
+                                  .map((item) => item[0])}
                               </div>
                             </Tippy>
                           </div>
