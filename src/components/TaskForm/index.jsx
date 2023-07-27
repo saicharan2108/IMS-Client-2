@@ -188,7 +188,7 @@ const TaskForm = (props) => {
                   return `${year}-${month}-${day}`
                 })() || ""
               }
-              {...register("startDate", { required: true })}
+              {...register("plannedEndDate", { required: true })}
               className="task-input-field"
             />
             {errors.startDate && (

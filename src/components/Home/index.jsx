@@ -66,7 +66,7 @@ const Home = () => {
     if (activeTitle === "" && activeFilters.length === 0) {
       return task
     } else if (
-      task.title.toLowerCase().includes(activeTitle.toLowerCase()) &&
+      task.company.toLowerCase().includes(activeTitle.toLowerCase()) &&
       activeFilters.length === 0
     ) {
       return task
@@ -147,6 +147,16 @@ const Home = () => {
         return "in-progress"
       case "Pending":
         return "pending"
+      default:
+        return ""
+    }
+  }
+  const priorityColor = (status) => {
+    switch (status) {
+      case "High":
+        return "high"
+      case "Low":
+        return "low"
       default:
         return ""
     }
@@ -232,14 +242,9 @@ const Home = () => {
                   <div>
                     <div className="task-card-header">
                       <div className="title-container">
-                        <h2>{task.title}</h2>
-                        <div
-                          className={`task-status ${statusColor(task.status)}`}
-                        >
-                          {task.status}
-                        </div>
-                      </div>
-                      <div className="edit-container">
+                        <p><b>Company: </b>{task.company}</p>
+                       
+                        <div className="edit-container">
                         <CgOptions
                           className="edit-icon"
                           onClick={() => {
@@ -318,17 +323,17 @@ const Home = () => {
                           </Popup>
                         </div>
                       </div>
-                    </div>
-                    <p>{task.description}</p>
-                  </div>
-                  
-                  <div className="task-card-footer">
-
-                 
-                  <div className="start-end">
                        
-                       <p className="start-icon">
-                            Start:{" "}
+                      </div>
+                     
+                    </div>
+                    <p><b>Contact: </b>{task.contact}</p>
+                    <p><b>City: </b>{task.city}</p>
+                    <p><b>Project: </b>{task.project}</p>
+                    <p><b>Quantity: </b>{task.quantity}</p>
+                    <p><b>Tasks: </b>{task.tasks}</p>
+                    <p className="start-icon">
+                            <b>Start Date:</b> {" "}
                             {new Date(task.startDate).toLocaleString("en-us", {
                               day: "numeric",
                               month: "short",
@@ -336,14 +341,38 @@ const Home = () => {
                             })}
                           </p>
                           <p className="due-icon">
-                            Due   :{" "}
-                            {new Date(task.dueDate).toLocaleString("en-us", {
+                            <b>Planned End Date: </b> {" "}
+                            {new Date(task.plannedEndDate).toLocaleString("en-us", {
                               day: "numeric",
                               month: "short",
                               year: "2-digit",
                             })}
                           </p>
-                          </div>
+                          <p className="due-icon">
+                            <b>Actual End Date:</b> {" "}
+                            {new Date(task.actualEndDate).toLocaleString("en-us", {
+                              day: "numeric",
+                              month: "short",
+                              year: "2-digit",
+                            })}
+                          </p>
+                    <p><b>Latest Update: </b>{task.latestUpdate}</p>
+                  </div>
+                  
+                  <div className="task-card-footer">
+                  <div
+                          className={`task-status ${statusColor(task.status)}`}
+                        >
+                          {task.status}
+                        </div>
+
+
+                        <div
+                          className={`task-status ${priorityColor(task.priority)}`}
+                        >
+                          {task.priority}
+                        </div>
+
 
                     <div>
                       {task.assignedUser !== task.createdBy && (
