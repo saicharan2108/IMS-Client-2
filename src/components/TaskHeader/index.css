@@ -161,15 +161,16 @@
   border-radius: 25px;
   background-color: #ffffff;
   display: flex;
-  flex-direction: column;
+
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 15px;
-  align-items: center;
-  min-width: 330px;
+  max-width: 550px;
 }
 
 @media screen and (min-width: 768px) {
   .create-task-popup-container {
-    min-width: 480px;
+    min-width: 580px;
   }
 }
 
@@ -183,8 +184,10 @@
 .create-task-form {
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
 }
 
 .create-task-form-input {
@@ -192,7 +195,6 @@
   flex-direction: column;
   gap: 8px;
   margin-bottom: 20px;
-  width: 100%;
 }
 
 .task-input-field {
@@ -203,6 +205,8 @@
   padding: 10px;
   font-size: 14px;
   border-radius: 4px;
+  width:250px;
+  display: inline;
   min-height: 40px;
 }
 
@@ -218,6 +222,7 @@
   width: 95px;
   height: 38px;
   display: flex;
+  align-self: center;
   align-items: center;
   justify-content: center;
 }

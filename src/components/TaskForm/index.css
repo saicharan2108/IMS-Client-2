@@ -1,0 +1,8 @@
+.Form-Titile{
+    text-align: center;
+}
+.inputs-container{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
