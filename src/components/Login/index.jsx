@@ -46,6 +46,7 @@ const Login = () => {
       console.log(json)
       Cookies.set("token", json.token)
       localStorage.setItem("user", JSON.stringify(json.user))
+      console.log(json.user);
       toast.success(`Welcome back ${json.user.name}!`)
 
       setTimeout(() => {

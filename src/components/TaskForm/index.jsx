@@ -115,6 +115,26 @@ const TaskForm = (props) => {
               <span className="task-error-msg">*Project type is required</span>
             )}
           </div>
+ 
+          <div className="create-task-form-input">
+            <label htmlFor="assignedTo">Category</label>
+            <select
+  id="category"
+  name="category"
+  value={task.category}
+  {...register("category")}
+  className="task-input-field"
+>
+  <option value="Software" selected={task.category === "Software"}>Software</option>
+  <option value="Website" selected={task.category === "Website"}>Website</option>
+  <option value="SEO" selected={task.category === "SEO"}>SEO</option>
+  <option value="SMM" selected={task.category === "SMM"}>SMM</option>
+  <option value="Graphic Design" selected={task.category === "Graphic Design"}>Graphic Design</option>
+  <option value="Resume" selected={task.category === "Resume"}>Resume</option>
+  <option value="Video Projects" selected={task.category === "Video Projects"}>Video Projects</option>
+</select>
+
+            </div>
           <div className="create-task-form-input">
             <input
               type="text"
@@ -204,7 +224,7 @@ const TaskForm = (props) => {
               min={new Date().toISOString().split("T")[0]}
               defaultValue={
                 (() => {
-                  const dateObject = new Date(task?.dueDate)
+                  const dateObject = new Date(task?.actualEndDate)
                   const year = dateObject.getFullYear()
                   const month = String(dateObject.getMonth() + 1).padStart(
                     2,

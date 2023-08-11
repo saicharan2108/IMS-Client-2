@@ -330,6 +330,7 @@ const Home = () => {
                     <p><b>Contact: </b>{task.contact}</p>
                     <p><b>City: </b>{task.city}</p>
                     <p><b>Project: </b>{task.project}</p>
+                    <p><b>Category: </b>{task.category}</p>
                     <p><b>Quantity: </b>{task.quantity}</p>
                     <p><b>Tasks: </b>{task.tasks}</p>
                     <p className="start-icon">
