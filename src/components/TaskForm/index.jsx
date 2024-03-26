@@ -56,105 +56,43 @@ const TaskForm = (props) => {
 
   return (
     <div className="create-task-popup-container">
-      <h4 className="Form-Title">{type === "create" ? "Create Project" : "Update Project"}</h4>
+      <h4 className="Form-Title">{type === "create" ? "Create New Inventory" : "Update Inventory"}</h4>
       <div className="create-task-form-container">
         <form className="create-task-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="create-task-form-input">
             <input
               type="text"
-              id="company"
-              name="company"
-              defaultValue={task?.company || ""}
-              placeholder="Company Name"
-              {...register("company", { required: true })}
+              id="labName"
+              name="labName"
+              defaultValue={task?.labName || ""}
+              placeholder="Item Name"
+              {...register("labName", { required: true })}
               className="task-input-field"
             />
             {errors.title && (
-              <span className="task-error-msg">*Company Name is required</span>
+              <span className="task-error-msg">*Item Name is required</span>
             )}
           </div>
           <div className="create-task-form-input">
             <input
               type="text"
-              id="contact"
-              name="contact"
-              defaultValue={task?.contact || ""}
-              placeholder="Contact Name"
-              {...register("contact", { required: true })}
+              id="sysConfig"
+              name="sysConfig"
+              defaultValue={task?.sysConfig || ""}
+              placeholder="System Configuration"
+              {...register("sysConfig", { required: true })}
               className="task-input-field"
             />
             {errors.title && (
-              <span className="task-error-msg">*Contact is required</span>
+              <span className="task-error-msg">*sysConfig is required</span>
             )}
           </div>
           <div className="create-task-form-input">
             <input
               type="text"
-              id="city"
-              name="city"
-              defaultValue={task?.city || ""}
-              placeholder="City"
-              {...register("city", { required: true })}
-              className="task-input-field"
-            />
-            {errors.title && (
-              <span className="task-error-msg">*City is required</span>
-            )}
-          </div>
-          <div className="create-task-form-input">
-            <input
-              type="text"
-              id="project"
-              name="project"
-              defaultValue={task?.project || ""}
-              placeholder="Project"
-              {...register("project", { required: true })}
-              className="task-input-field"
-            />
-            {errors.title && (
-              <span className="task-error-msg">*Project type is required</span>
-            )}
-          </div>
- 
-          <div className="create-task-form-input">
-            <label htmlFor="assignedTo">Category</label>
-            <select
-  id="category"
-  name="category"
-  value={task.category}
-  {...register("category")}
-  className="task-input-field"
->
-  <option value="Software" selected={task.category === "Software"}>Software</option>
-  <option value="Website" selected={task.category === "Website"}>Website</option>
-  <option value="SEO" selected={task.category === "SEO"}>SEO</option>
-  <option value="SMM" selected={task.category === "SMM"}>SMM</option>
-  <option value="Graphic Design" selected={task.category === "Graphic Design"}>Graphic Design</option>
-  <option value="Resume" selected={task.category === "Resume"}>Resume</option>
-  <option value="Video Projects" selected={task.category === "Video Projects"}>Video Projects</option>
-</select>
-
-            </div>
-          <div className="create-task-form-input">
-            <input
-              type="text"
-              id="tasks"
-              name="tasks"
-              defaultValue={task?.tasks || ""}
-              placeholder="Tasks"
-              {...register("tasks", { required: true })}
-              className="task-input-field"
-            />
-            {errors.title && (
-              <span className="task-error-msg">*Tasks are required</span>
-            )}
-          </div>
-          <div className="create-task-form-input">
-            <input
-              type="text"
-              id="quantity"
-              name="quantity"
-              defaultValue={task?.quantity || ""}
+              id="qty"
+              name="qty"
+              defaultValue={task?.qty || ""}
               placeholder="Quantity"
               {...register("quantity", { required: true })}
               className="task-input-field"
@@ -164,7 +102,38 @@ const TaskForm = (props) => {
             )}
           </div>
           <div className="create-task-form-input">
-            <label htmlFor="dueDate">Start Date</label>
+            <input
+              type="text"
+              id="invoiceNo"
+              name="invoiceNo"
+              defaultValue={task?.invoiceNo || ""}
+              placeholder="Invoice No"
+              {...register("invoiceNo", { required: true })}
+              className="task-input-field"
+            />
+            {errors.title && (
+              <span className="task-error-msg">*Invoice No is required</span>
+            )}
+          </div>
+ 
+        
+          
+          <div className="create-task-form-input">
+            <input
+              type="text"
+              id="unitPrice"
+              name="unitPrice"
+              defaultValue={task?.unitPrice || ""}
+              placeholder="Unit Price"
+              {...register("unitPrice", { required: true })}
+              className="task-input-field"
+            />
+            {errors.title && (
+              <span className="task-error-msg">*Unit Price is required</span>
+            )}
+          </div>
+          <div className="create-task-form-input">
+            <label htmlFor="dueDate">Purchase Date</label>
             <input
               type="date"
               id="startDate"
@@ -186,19 +155,19 @@ const TaskForm = (props) => {
               className="task-input-field"
             />
             {errors.startDate && (
-              <span className="task-error-msg">*Start Date is required</span>
+              <span className="task-error-msg">*Purchase Date is required</span>
             )}
           </div>
           <div className="create-task-form-input">
-            <label htmlFor="dueDate">Planned End Date</label>
+            <label htmlFor="dueDate"> Expiry Date</label>
             <input
               type="date"
-              id="plannedEndDate"
-              name="plannedEndDate"
+              id="expiryDate"
+              name="expiryDate"
               // min={new Date().toISOString().split("T")[0]}
               defaultValue={
                 (() => {
-                  const dateObject = new Date(task?.plannedEndDate)
+                  const dateObject = new Date(task?.expiryDate)
                   const year = dateObject.getFullYear()
                   const month = String(dateObject.getMonth() + 1).padStart(
                     2,
@@ -208,113 +177,57 @@ const TaskForm = (props) => {
                   return `${year}-${month}-${day}`
                 })() || ""
               }
-              {...register("plannedEndDate", { required: true })}
+              {...register("expiryDate", { required: false })}
               className="task-input-field"
             />
             {errors.startDate && (
-              <span className="task-error-msg">*Planned End Date is required</span>
+              <span className="task-error-msg">*Expiry Date is required</span>
             )}
           </div>
-          <div className="create-task-form-input">
-            <label htmlFor="dueDate">Actual End Date</label>
+         
+         
+            
+            <div className="create-task-form-input">
             <input
-              type="date"
-              id="actualEndDate"
-              name="actualEndDate"
-              min={new Date().toISOString().split("T")[0]}
-              defaultValue={
-                (() => {
-                  const dateObject = new Date(task?.actualEndDate)
-                  const year = dateObject.getFullYear()
-                  const month = String(dateObject.getMonth() + 1).padStart(
-                    2,
-                    "0"
-                  )
-                  const day = String(dateObject.getDate()).padStart(2, "0")
-                  return `${year}-${month}-${day}`
-                })() || ""
-              }
-              {...register("actualEndDate", { required: true })}
+              type="text"
+              id="category"
+              name="category"
+              defaultValue={task?.category || ""}
+              placeholder="Category"
+              {...register("category", { required: false })}
               className="task-input-field"
             />
-            {errors.dueDate && (
-              <span className="task-error-msg">*Actual End Date is required</span>
-            )}
-          </div>
-          <div className="create-task-form-input">
-            <label htmlFor="assignedTo">Assign To</label>
-            <select
-              id="assignedTo"
-              name="assignedTo"
-              {...register("assignedTo", { required: true })}
-              className="task-input-field"
-            >
-              {users?.map((user) => (
-                <option
-                  value={user.username}
-                  key={user._id}
-                  selected={user.username === task.assignedUser}
-                >
-                  {user.username === userName
-                    ? `${user.username} (me)`
-                    : user.username}
-                </option>
-              ))}
-            </select>
+
             {/* {errors.assignedTo && (
               <span className="task-error-msg">*This field is required</span>
             )} */}
           </div>
+
           <div className="create-task-form-input">
-            <label htmlFor="assignedTo">Status</label>
-            <select
-              id="status"
-              name="status"
-              {...register("status")}
-              className="task-input-field"
-            >
-              <option value="Pending" selected={task.status === "Pending"}>
-                Pending
-              </option>
-              <option
-                value="In Progress"
-                selected={task.status === "In Progress"}
-              >
-                In Progress
-              </option>
-              <option value="Completed" selected={task.status === "Completed"}>
-                Completed
-              </option>
-            </select>
-            </div>
-            <div className="create-task-form-input">
-            <label htmlFor="assignedTo">Priority</label>
-            <select
-              id="priority"
-              name="priority"
-              {...register("priority")}
-              className="task-input-field"
-            >
-              <option value="Low" selected={task.status === "Low"}>
-                Low
-              </option>
-              <option
-                value="High"
-                selected={task.status === "High"}
-              >
-                High
-              </option>
-             
-            </select>
-            </div>
-            <div className="create-task-form-input">
             <input
               type="text"
-              id="latestUpdate"
-              name="latestUpdate"
-              defaultValue={task?.latestUpdate || ""}
-              placeholder="Latest Update"
-              {...register("latestUpdate", { required: false })}
+              id="supplierName"
+              name="supplier"
+              defaultValue={task?.supplier || ""}
+              placeholder="Supplier Name"
+              {...register("Supplier", { required: false })}
+              className="task-input-field"
+            />
+
+            {/* {errors.assignedTo && (
+              <span className="task-error-msg">*This field is required</span>
+            )} */}
+          </div>
+
+
+          <div className="create-task-form-input">
+            <input
+              type="text"
+              id="category"
+              name="category"
+              defaultValue={task?.category || ""}
+              placeholder="Category"
+              {...register("category", { required: false })}
               className="task-input-field"
             />
 

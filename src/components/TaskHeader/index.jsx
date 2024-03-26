@@ -105,7 +105,7 @@ const TaskHeader = (props) => {
             />
             <FiSearch className="header-icon" />
           </div>
-          <div className="task-filter-container">
+          {/* <div className="task-filter-container">
             <Popup
               trigger={
                 <button className="filter-btn">
@@ -183,7 +183,7 @@ const TaskHeader = (props) => {
                 </div>
               </div>
             </Popup>
-          </div>
+          </div> */}
           {location !== "/assigned-to-me" &&
             location !== "/all-tasks" &&
             location !== "/admin/dashboard" && (

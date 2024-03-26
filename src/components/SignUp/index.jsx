@@ -60,22 +60,24 @@ const SignUp = () => {
   }
 
   return (
+    <div>
+    <img src ="https://res.cloudinary.com/dlovqnrza/image/upload/v1710952325/BEC_bmbdkx.jpg" alt="BEC" className="college-logo"/>
     <motion.div
       className="login-container"
       initial={{ opacity: 0, x: -35 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 0 }}
     >
+    
       <div className="login-image-container login-image-container-2">
+      
         <img src="https://res.cloudinary.com/dlovqnrza/image/upload/v1689935450/best-project-management-platforms-featured-image-scaled-1_qd5slm.jpg" alt="login-image" />
       </div>
 
       <div className="login-form-container">
-      
-      <img src="https://res.cloudinary.com/dlovqnrza/image/upload/v1689734240/PC-Logo-NEW-for-Website-Page-PNG-1-300x140_aqlfy0.png" className="Plogo"/>
 
         <div className="login-header login-header-2">
-          <h1>Projects Management System</h1>
+          <h1>Inventory Management System</h1>
           <div className="header-gradient-container header-gradient-container-2"></div>
         </div>
         <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -179,7 +181,9 @@ const SignUp = () => {
         </form>
       </div>
     </motion.div>
+    </div>
   )
+  
 }
 
 export default SignUp

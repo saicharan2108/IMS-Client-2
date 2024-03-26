@@ -1,0 +1,11 @@
+.beta-stage{
+    width:50%;
+    height:70%;
+    align-self: center;
+}
+.task-list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

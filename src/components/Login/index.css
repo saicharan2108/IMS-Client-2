@@ -55,7 +55,7 @@
   width: 250px;
   position: absolute;
   background-image: linear-gradient(135deg, #6c99fc, #66f3e7, #d55ef0);
-  z-index: -1;
+  /* z-index: 0; */
   border-radius: 50%;
   top: 20px;
   filter: blur(60px);
@@ -222,4 +222,7 @@
   height: 110px;
   width: 200px;
   border-radius: 10px;
+}
+.college-logo{
+  width:100%;
 }

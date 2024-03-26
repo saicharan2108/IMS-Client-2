@@ -1,12 +1,8 @@
 import React from "react"
 import { Navigate } from "react-router-dom"
 import Cookies from "js-cookie"
-import { CgOptions } from "react-icons/cg"
-import { Oval } from "react-loader-spinner"
-import Tippy from "@tippyjs/react"
 import { toast } from "react-hot-toast"
 import Popup from "reactjs-popup"
-import HomeCharts from "../HomeCharts"
 
 import Navbar from "../Navbar"
 import TaskHeader from "../TaskHeader"
@@ -203,27 +199,23 @@ const Home = () => {
   return (
     <div className="home-container">
       <Navbar />
-
       <div className="home-main">
-      <img src ="https://res.cloudinary.com/dlovqnrza/image/upload/v1710952325/BEC_bmbdkx.jpg" alt="BEC" className="college-logo"/>
-
         <div className="greeting-container">
-      
           <p className="greeting-msg">Hi {name.split(" ")[0]},</p>
           <h1>
             Welcome Back <span className="wave">👋🏻</span>
           </h1>
         </div>
         <div className="task-container">
-          {/* <TaskHeader
+          <TaskHeader
             handleSearchTitle={handleSearchTitle}
             handleActiveFilters={handleActiveFilters}
             activeFilters={activeFilters}
             fetchTasks={fetchTasks}
-          /> */}
+          />
           <div className="task-list-container">
-          <HomeCharts/>
-              
+           <img src="https://res.cloudinary.com/dlovqnrza/image/upload/v1684135277/maintain_moazzq.webp" alt="Maintaining" className="beta-stage" /> 
+           <p>Reports Page In Beta Stage</p>
           </div>
         </div>
       </div>

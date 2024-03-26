@@ -8,9 +8,13 @@
     display: flex;
   }
 }
+.college-logo{
+  width:100%
+}
 
 .home-main {
   padding: 25px;
+  padding-top:0px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,14 +22,15 @@
   background-color: rgb(255, 255, 255);
   position: relative;
   height: 100%;
+  margin-left: 275px !important;
   max-height: 100vh;
 }
 
 @media screen and (min-width: 768px) {
   .home-main {
     border-top-left-radius: 45px;
-    padding: 45px;
-    padding-top: 55px;
+    padding: 0px;
+    padding-top: 0px;
   }
 
   .home-main::before {
@@ -35,8 +40,6 @@
     left: 0;
     height: 50px;
     width: 50px;
-    background-color: #000000;
-    z-index: -1;
   }
 }
 
