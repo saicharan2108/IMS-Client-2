@@ -5,6 +5,10 @@ import {RxUpdate} from 'react-icons/rx'
 import {TbReportSearch} from 'react-icons/tb'
 import {MdOutlineCoPresent} from 'react-icons/md'
 import {HiOutlineLogout,HiOutlineChevronDown,HiOutlineChevronRight} from 'react-icons/hi'
+import { MdOutlineInventory } from "react-icons/md";
+import { FcDepartment } from "react-icons/fc";
+
+
 
 
 
@@ -89,6 +93,22 @@ export const LinkItem = styled(Link)`
 text-decoration:none;`
 
 export const HomeIcon =  styled(IoHomeOutline)`
+height:20px;
+width:20px;
+margin-left:5px;
+margin-top:0px;
+margin-right:10px;
+`
+
+export const InventoryIcon =  styled(MdOutlineInventory)`
+height:20px;
+width:20px;
+margin-left:5px;
+margin-top:0px;
+margin-right:10px;
+`
+
+export const DepartmentsIcon =  styled(FcDepartment)`
 height:20px;
 width:20px;
 margin-left:5px;

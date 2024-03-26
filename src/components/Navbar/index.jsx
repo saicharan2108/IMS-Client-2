@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import the navigate function from the Reach Router library
+import { useNavigate } from 'react-router-dom'; 
 import Cookies from 'js-cookie';
+
 import {
   NavContainer,
   SubNavContainer,
@@ -13,6 +14,8 @@ import {
   LinkItem,
   LogoutIcon,
   SubNavItem,
+  DepartmentsIcon,
+  InventoryIcon,
   ReportIcon,
   HomeIcon,
   NavItem,
@@ -22,16 +25,13 @@ import {
 const Navbar = () => {
   const [activeNavItem, setActiveNavItem] = useState('home');
   const [activeSubNavItem, setActiveSubNavItem] = useState(null);
-  const [isHomeActive, setHomeActive] = useState(true);
+  const [isInventoryActive, setInventoryActive] = useState(false);
   const [isDepartmentsActive, setDepartmentsActive] = useState(false);
+  const [isTransactionsActive, setTransactionsActive] = useState(false);
   const [isReportsActive, setReportsActive] = useState(false);
   const navigate = useNavigate();
 
-
   const clickedHome = () => {
-    setHomeActive(true);
-    setDepartmentsActive(false);
-    setReportsActive(false);
     setActiveNavItem('home');
     setActiveSubNavItem(null);
   };
@@ -42,19 +42,41 @@ const Navbar = () => {
     navigate("/login")
   };
 
-  const clickedDepartments = () => {
-    setHomeActive(false);
-    setDepartmentsActive(!isDepartmentsActive);
-    setReportsActive(false);
-    setActiveNavItem('departments');
-    setActiveSubNavItem(null);
-  };
-
-  const clickedReports = () => {
-    setHomeActive(false);
-    setDepartmentsActive(false);
-    setReportsActive(true);
-    setActiveNavItem('reports');
+  const clickedNavItem = (navItem) => {
+    setActiveNavItem(navItem);
+    // Toggle sub-nav items
+    switch (navItem) {
+      case 'inventory':
+        setInventoryActive(!isInventoryActive);
+        setDepartmentsActive(false);
+        setTransactionsActive(false);
+        setReportsActive(false);
+        break;
+      case 'departments':
+        setDepartmentsActive(!isDepartmentsActive);
+        setInventoryActive(false);
+        setTransactionsActive(false);
+        setReportsActive(false);
+        break;
+      case 'transactions':
+        setTransactionsActive(!isTransactionsActive);
+        setInventoryActive(false);
+        setDepartmentsActive(false);
+        setReportsActive(false);
+        break;
+      case 'reports':
+        setReportsActive(!isReportsActive);
+        setInventoryActive(false);
+        setDepartmentsActive(false);
+        setTransactionsActive(false);
+        break;
+      default:
+        setInventoryActive(false);
+        setDepartmentsActive(false);
+        setTransactionsActive(false);
+        setReportsActive(false);
+        break;
+    }
     setActiveSubNavItem(null);
   };
 
@@ -72,96 +94,113 @@ const Navbar = () => {
             </div>
           </div>
         </UserProfileCard>
-<LinkItem to="/">
-        <NavItem isActive={activeNavItem === 'home'} onClick={clickedHome}>
-          <HomeIcon /> Home
-        </NavItem>
+        <LinkItem to="/">
+          <NavItem isActive={activeNavItem === 'home'} onClick={() => clickedNavItem('home')}>
+            <HomeIcon /> Home
+          </NavItem>
         </LinkItem>
-<LinkItem to="/departments">
-        <NavItem
-          isActive={activeNavItem === 'departments'}
-          onClick={clickedDepartments}
-        >
-          <UpdateIcon /> Departments {isDepartmentsActive ? <DownIcon /> : <RightIcon />}
-        </NavItem>
+          <NavItem
+            isActive={activeNavItem === 'inventory'}
+            onClick={() => clickedNavItem('inventory')}
+          >
+            <InventoryIcon /> Inventory {isInventoryActive ? <DownIcon /> : <RightIcon />}
+          </NavItem>
 
-        {isDepartmentsActive && (
-          <SubNavContainer>
-            <SubNavItem
-              isActive={activeSubNavItem === 'ece'}
-              onClick={() => setActiveSubNavItem('ece')}
-            >
-              ECE
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'eie'}
-              onClick={() => setActiveSubNavItem('eie')}
-            >
-              EIE
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'eee'}
-              onClick={() => setActiveSubNavItem('eee')}
-            >
-              EEE
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'cse'}
-              onClick={() => setActiveSubNavItem('cse')}
-            >
-              CSE
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'it'}
-              onClick={() => setActiveSubNavItem('it')}
-            >
-              IT
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'me'}
-              onClick={() => setActiveSubNavItem('me')}
-            >
-              ME
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'che'}
-              onClick={() => setActiveSubNavItem('che')}
-            >
-              Chemical Eng..
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'civil'}
-              onClick={() => setActiveSubNavItem('civil')}
-            >
-              Civil Eng..
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'chemistry'}
-              onClick={() => setActiveSubNavItem('chemistry')}
-            >
-              Chemistry
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'physics'}
-              onClick={() => setActiveSubNavItem('physics')}
-            >
-              Physics
-            </SubNavItem>
-            <SubNavItem
-              isActive={activeSubNavItem === 'mca'}
-              onClick={() => setActiveSubNavItem('mca')}
-            >
-              MCA
-            </SubNavItem>
-          </SubNavContainer>
-        )}
+          {isInventoryActive && (
+            <SubNavContainer>
+              <SubNavItem
+                isActive={activeSubNavItem === 'add_items'}
+                onClick={() => setActiveSubNavItem('add_items')}
+              >
+                Add Items
+              </SubNavItem>
+              <LinkItem to="/manage-inventory">
 
-</LinkItem>
-<LinkItem to="/reports">
-        <NavItem isActive={activeNavItem === 'reports'} onClick={clickedReports}>
-          <ReportIcon /> Reports {isReportsActive ? <DownIcon /> : <RightIcon />}
-        </NavItem>
-        </LinkItem>
+              <SubNavItem
+                isActive={activeSubNavItem === 'manage_inventory'}
+                onClick={() => setActiveSubNavItem('manage_inventory')}
+              >
+                Manage
+
+              </SubNavItem>
+              </LinkItem>
+
+            </SubNavContainer>
+          )}
+       
+          <NavItem
+            isActive={activeNavItem === 'departments'}
+            onClick={() => clickedNavItem('departments')}
+          >
+            <DepartmentsIcon /> Departments {isDepartmentsActive ? <DownIcon /> : <RightIcon />}
+          </NavItem>
+
+          {isDepartmentsActive && (
+            <SubNavContainer>
+              <SubNavItem
+                isActive={activeSubNavItem === 'add_dept'}
+                onClick={() => setActiveSubNavItem('add_dept')}
+              >
+                Add Dept
+              </SubNavItem>
+              <SubNavItem
+                isActive={activeSubNavItem === 'manage_dept'}
+                onClick={() => setActiveSubNavItem('manage_dept')}
+              >
+                Manage Dept
+              </SubNavItem>
+            </SubNavContainer>
+          )}
+
+       
+          <NavItem isActive={activeNavItem === 'transactions'} onClick={() => clickedNavItem('transactions')}>
+            <UpdateIcon /> Transactions {isTransactionsActive ? <DownIcon /> : <RightIcon />}
+          </NavItem>
+
+          {isTransactionsActive && (
+            <SubNavContainer>
+              <SubNavItem
+                isActive={activeSubNavItem === 'purchase_new_inventory'}
+                onClick={() => setActiveSubNavItem('purchase_new_inventory')}
+              >
+                Purchase New Inventory
+              </SubNavItem>
+              <SubNavItem
+                isActive={activeSubNavItem === 'tracking_depts'}
+                onClick={() => setActiveSubNavItem('tracking_depts')}
+              >
+                Tracking for Each Dept
+              </SubNavItem>
+              <SubNavItem
+                isActive={activeSubNavItem === 'transaction_history'}
+                onClick={() => setActiveSubNavItem('transaction_history')}
+              >
+                Transaction History
+              </SubNavItem>
+            </SubNavContainer>
+          )}
+       
+       
+          <NavItem isActive={activeNavItem === 'reports'} onClick={() => clickedNavItem('reports')}>
+            <ReportIcon /> Reports {isReportsActive ? <DownIcon /> : <RightIcon />}
+          </NavItem>
+          {isReportsActive && (
+            <SubNavContainer>
+              <SubNavItem
+                isActive={activeSubNavItem === 'annually'}
+                onClick={() => setActiveSubNavItem('annually')}
+              >
+                Anually
+              </SubNavItem>
+              <SubNavItem
+                isActive={activeSubNavItem === 'monthly'}
+                onClick={() => setActiveSubNavItem('monthly')}
+              >
+                Monthly
+              </SubNavItem>
+            </SubNavContainer>
+          )}
+       
       </NavContainer>
     </>
   );
