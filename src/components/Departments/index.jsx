@@ -416,7 +416,7 @@ const Departments = () => {
               <div>
                 <div className="table-header">
                   <li className="table-column">SL No.</li>
-                  <li className="table-column">Department</li>
+                  <li className="table-column">Item Name</li>
                   <li className="table-column">System Config</li>
                   <li className="table-column">Quantity</li>
                   <li className="table-column">Invoice No</li>

@@ -108,12 +108,15 @@ const Navbar = () => {
 
           {isInventoryActive && (
             <SubNavContainer>
+            <LinkItem to="/add-item">
               <SubNavItem
                 isActive={activeSubNavItem === 'add_items'}
                 onClick={() => setActiveSubNavItem('add_items')}
               >
                 Add Items
               </SubNavItem>
+              </LinkItem>
+
               <LinkItem to="/manage-inventory">
 
               <SubNavItem
@@ -137,12 +140,14 @@ const Navbar = () => {
 
           {isDepartmentsActive && (
             <SubNavContainer>
+            <LinkItem to="/add-dept">
               <SubNavItem
                 isActive={activeSubNavItem === 'add_dept'}
                 onClick={() => setActiveSubNavItem('add_dept')}
               >
                 Add Dept
               </SubNavItem>
+              </LinkItem>
               <SubNavItem
                 isActive={activeSubNavItem === 'manage_dept'}
                 onClick={() => setActiveSubNavItem('manage_dept')}
